@@ -4,7 +4,7 @@ public class JeuHanoi {
 
     public static void main(String args[]) {
         JeuHanoi j = new JeuHanoi();
-        j.lancementJeu(5);
+        j.lancementJeu(4);
     }
     
     private Tour t1;

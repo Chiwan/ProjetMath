@@ -2,16 +2,17 @@ package tourDeHanoi;
 import java.lang.Math;
 public class Test {
        
-       static int n =6; //number of disks
+       static int n =4; //number of disks
        
        public static void main (String[] args) { 
-          n = Integer.parseInt(args[0]);
+          //n = Integer.parseInt(args[0]);
           int limit = (1 << n) - 1; //number of iterations = 2^n - 1
           for (int i = 0; i < limit; i++) {
              int d = disk(i); //disk to be moved
              int source = (movements(i,d)*direction(d))%3; //tower it is currently occupying
              int dest = (source + direction(d))%3; //tower to move it to
              out(d,source,dest);
+             
           }      
        }
        
