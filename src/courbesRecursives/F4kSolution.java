@@ -7,21 +7,21 @@ import java.awt.RenderingHints;
 
 public class F4kSolution extends AbstractSolution {
 
-//    float[] hsbvals = { 0,0,0};
-//    hsbvals = Color.RGBtoHSB(0, 255, 0, hsbvals);
-//    for(int i=0 ; i<3 ;i++){
-//        System.out.println(hsbvals[i]);
-//    }
+    //    float[] hsbvals = { 0,0,0};
+    //    hsbvals = Color.RGBtoHSB(0, 255, 0, hsbvals);
+    //    for(int i=0 ; i<3 ;i++){
+    //        System.out.println(hsbvals[i]);
+    //    }
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        F4kSolution n = new F4kSolution(2);
+        F4kSolution n = new F4kSolution(8);
     }
 
     F4kSolution(int n){
         super(n);
     }
-    
+
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -39,74 +39,54 @@ public class F4kSolution extends AbstractSolution {
 
     @Override
     public void drawSolutionk(Graphics drawingArea, int... arg) {
-        // TODO Auto-generated method stub
+
         Graphics2D g2d = (Graphics2D) drawingArea;
-        int x= arg[0];
+        int x = arg[0];
         int y = arg[1];
         int longueur = arg[2];
         int depth = arg[3];
-        //int cas = arg[4];
-        if(depth!=profondeur){   
 
-                        
-            //figure(g2d,x,y,longueur);
+
+        if(depth != profondeur){
+
+            if(depth <6){
+                g2d.setColor(Color.BLACK);
+            }
+            else{
+                g2d.setColor(Color.GREEN);
+            }
+
+            int echelle = 3*longueur/5;
             
-            g2d.setColor(Color.CYAN);
-            //g2d.translate(0, -longueur);
-            figure(g2d,x,y,longueur);
-            
-//            g2d.setColor(Color.PINK);
-//            g2d.translate(x,longueur);
-//            g2d.translate(-longueur/8, -3*longueur/4);
-//            g2d.rotate(Math.toRadians(-30));
-//            figure(g2d,x,y,longueur);
-//            
-//            g2d.setColor(Color.GREEN);
-//            g2d.rotate(Math.toRadians(30));
-//            g2d.translate(longueur/8,3*longueur/4);
-//            g2d.translate(longueur/4, -longueur);
-//            g2d.rotate(Math.toRadians(45)); 
-//            figure(g2d,x,y,longueur);
-            
-//            g2d.rotate(Math.toRadians(-45));
-//            g2d.translate(-longueur/4, longueur);
-            drawSolutionk(g2d,x,longueur,longueur,depth+1);
-            
+            //Dessin de depart
+            g2d.drawLine(x,y, x ,-longueur);
+            g2d.drawLine(x, -longueur/2, -longueur/8, -3*longueur/4); // s1
+            g2d.drawLine(x, -3*longueur/4, longueur/4, -longueur); // s2   
+
+            //Permet la croissance vers le haut
+            g2d.translate(x, -longueur);
+            drawSolutionk(g2d,x,y,echelle,depth+1);
+
+             //Permet la croissance vers le cote gauche
+            g2d.translate(x,longueur);
+            g2d.translate(-longueur/8, -3*longueur/4);
+            g2d.rotate(Math.toRadians(-30));
+            drawSolutionk(g2d,x,y,echelle,depth+1);
+
+            //Permet la croissance vers le cote droit
+            g2d.rotate(Math.toRadians(30));
+            g2d.translate(longueur/8, 3*longueur/4);
+            g2d.translate(longueur/4, -longueur);
+            g2d.rotate(Math.toRadians(45));          
+            drawSolutionk(g2d,x,y,echelle,depth+1);
+
+            g2d.rotate(Math.toRadians(-45));
+            g2d.translate(-longueur/4, longueur);       
 
         }
-    }
-    
-    public void figure(Graphics2D g2d, int x ,int  y , int longueur){
-        
-        //g2d.translate(x, y);
-        g2d.drawLine(x,y, x ,-longueur);
-        g2d.drawLine(x, -longueur/2, -longueur/8, -3*longueur/4); // s1
-        g2d.drawLine(x, -3*longueur/4, longueur/4, -longueur); // s2   
-        int lReference = longueur/2;
-        g2d.setColor(Color.PINK);
-        g2d.translate(x, -longueur);
-        g2d.drawLine(x, x, x ,-lReference);
-        g2d.drawLine(x, -lReference/2, -lReference/8, -3*lReference/4); // s1
-        g2d.drawLine(x, -3*lReference/4, lReference/4, -lReference); // s2
-        
 
-//        g2d.translate(x,longueur);
-//        g2d.translate(-longueur/8, -3*longueur/4);
-//        g2d.rotate(Math.toRadians(-30));
-//        g2d.drawLine(x, x, x ,-longueur);
-//        g2d.drawLine(x, -longueur/2, -longueur/8, -3*longueur/4); // s1
-//        g2d.drawLine(x, -3*longueur/4, longueur/4, -longueur); // s2
-//
-//
-//        g2d.rotate(Math.toRadians(30));
-//        g2d.translate(longueur/8,3*longueur/4);
-//        g2d.translate(longueur/4, -longueur);
-//        g2d.rotate(Math.toRadians(45));       
-//        g2d.drawLine(x, x, x ,-longueur);
-//        g2d.drawLine(x, -longueur/2,- longueur/8,- 3*longueur/4); // s1
-//        g2d.drawLine(x, -3*longueur/4, +longueur/4,- longueur); // s2       
-//        
-//        g2d.rotate(Math.toRadians(-45));
-//        g2d.translate(-longueur/4, longueur);       
+
     }
 }
+
+
