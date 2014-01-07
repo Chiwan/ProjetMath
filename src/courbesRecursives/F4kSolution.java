@@ -15,7 +15,7 @@ public class F4kSolution extends AbstractSolution {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        F4kSolution n = new F4kSolution(8);
+        F4kSolution n = new F4kSolution(10);
     }
 
     F4kSolution(int n){
@@ -34,7 +34,7 @@ public class F4kSolution extends AbstractSolution {
 
         // mettre ici un appel de drawSolutionk avec une liste d'arguments adaptés, par exemple : 
         //drawSolutionk(g2d, frameWidth/20, frameHeight/20, frameWidth/4,profondeur);
-        drawSolutionk(g2d,0,0,frameHeight/8,0);
+        drawSolutionk(g2d,0,0,frameHeight/4,0);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class F4kSolution extends AbstractSolution {
 
         if(depth != profondeur){
 
-            if(depth <6){
+            if(depth <8){
                 g2d.setColor(Color.BLACK);
             }
             else{
@@ -64,24 +64,28 @@ public class F4kSolution extends AbstractSolution {
             g2d.drawLine(x, -3*longueur/4, longueur/4, -longueur); // s2   
 
             //Permet la croissance vers le haut
-            g2d.translate(x, -longueur);
+            g2d.translate(x, -3*longueur/4);
             drawSolutionk(g2d,x,y,echelle,depth+1);
 
              //Permet la croissance vers le cote gauche
-            g2d.translate(x,longueur);
-            g2d.translate(-longueur/8, -3*longueur/4);
-            g2d.rotate(Math.toRadians(-30));
+            g2d.translate(x,3*longueur/4);
+            //g2d.translate(-longueur/8, -3*longueur/4);
+            g2d.translate(x,-longueur/2);
+            g2d.rotate(Math.toRadians(-26));
             drawSolutionk(g2d,x,y,echelle,depth+1);
 
             //Permet la croissance vers le cote droit
-            g2d.rotate(Math.toRadians(30));
-            g2d.translate(longueur/8, 3*longueur/4);
-            g2d.translate(longueur/4, -longueur);
+            g2d.rotate(Math.toRadians(26));
+            //g2d.translate(longueur/8, 3*longueur/4);
+            g2d.translate(x,longueur/2);
+            //g2d.translate(longueur/4, -longueur);
+            g2d.translate(x, -3*longueur/4);
             g2d.rotate(Math.toRadians(45));          
             drawSolutionk(g2d,x,y,echelle,depth+1);
 
             g2d.rotate(Math.toRadians(-45));
-            g2d.translate(-longueur/4, longueur);       
+            //g2d.translate(-longueur/4, longueur);   
+            g2d.translate(x,3*longueur/4);
 
         }
 
